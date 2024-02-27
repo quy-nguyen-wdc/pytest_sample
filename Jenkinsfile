@@ -188,9 +188,9 @@ pipeline {
       success {
           echo 'This will run only if successful'
           echo "INFO BUILD_URL: ${BUILD_URL}"
-          // script {
-            // wget ${BUILD_URL}/consoleText
-          // }
+          script {
+            curl -O "${BUILD_URL}/consoleText"
+          }
         }
       failure {
           echo 'This will run only if failed'
