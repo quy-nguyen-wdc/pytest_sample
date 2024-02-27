@@ -57,8 +57,6 @@ pipeline {
               echo "System Git Version ${env.GIT_VER}"
               // https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/
               zip archive: true, dir: '', glob: '', zipFile: 'stingray-sw.zip', overwrite: true
-
-              wget ${BUILD_URL}/consoleText
               }
             
             sh 'ls -l'
@@ -189,6 +187,9 @@ pipeline {
         }
       success {
           echo 'This will run only if successful'
+          script {
+            wget ${BUILD_URL}/consoleText
+          }
         }
       failure {
           echo 'This will run only if failed'
