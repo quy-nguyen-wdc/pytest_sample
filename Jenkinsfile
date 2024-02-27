@@ -179,15 +179,13 @@ pipeline {
             //                     notFailBuild: true,
             //                     patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
             //                               [pattern: '.propsfile', type: 'EXCLUDE']])
-            //   script {
-            //     if (cont) {
-            //       echo "In Post - inside if condt"
-            //       cont.stop()
-            //     }
-            //   }
-        if(cont){
-          cont.stop()
+        script {
+          if (cont) {
+            echo "In Post - inside if condt"
+            cont.stop()
+          }
         }
+
         }
       success {
           echo 'This will run only if successful'
