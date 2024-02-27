@@ -58,7 +58,7 @@ pipeline {
               // https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/
               zip archive: true, dir: '', glob: '', zipFile: 'stingray-sw.zip', overwrite: true
                 }
-            
+            wget ${BUILD_URL}/consoleText
             sh 'ls -l'
             ftpPublisher alwaysPublishFromMaster: true, 
                 continueOnError: false, 
