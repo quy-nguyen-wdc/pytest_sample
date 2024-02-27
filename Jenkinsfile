@@ -155,10 +155,11 @@ pipeline {
           echo "INFO Invoke another job"
           build job: 'Freestyle Job Demo', parameters: [string(name: 'pyenv', value: '3.8.10')]
           echo "INFO CURRENT RESULT: ${currentBuild.currentResult}"
-                // script {
-                //   cont = docker.image("${img}").run('--rm -d -p 5000:5000')
-                //   sleep(5)
-                // }
+                script {
+                  def docker_image = "httpd:2.4-alpine"
+                  cont = docker.image("${docker_image}").run('--rm -d -p 5000:5000')
+                  sleep(5)
+                }
                 timeout(time: 3, unit: 'MINUTES') {
                     retry(5) {
                   // sh './flakey-deploy.sh'
@@ -184,6 +185,9 @@ pipeline {
             //       cont.stop()
             //     }
             //   }
+        if(cont){
+          cont.stop()
+        }
         }
       success {
           echo 'This will run only if successful'
