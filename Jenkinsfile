@@ -5,12 +5,6 @@ pipeline {
         retries 2
         }
     }
-  //   options {
-  //     // Timeout counter starts AFTER agent is allocated
-  //     timeout(time: 1, unit: 'SECONDS')
-          // This is required if you want to clean before build
-          // skipDefaultCheckout(true)
-  //   }
     environment {
         GIT_VER_REQD = "2.43.0"
           def img = ("${env.JOB_NAME}:${env.BUILD_ID}").toLowerCase()
