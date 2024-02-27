@@ -189,9 +189,9 @@ pipeline {
           echo 'This will run only if successful'
           echo "INFO BUILD_URL: ${BUILD_URL}"
           script {
-            def url = "${BUILD_URL}/consoleText"
+            def url = "${BUILD_URL}consoleText"
             echo "INFO url: ${url}"
-            sh "curl -O ${url}"
+            sh "curl -o console.log ${url}"
           }
         }
       failure {
