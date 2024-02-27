@@ -56,7 +56,7 @@ pipeline {
                     env.GIT_VER = sh(returnStdout: true, script: 'git --version | awk \'{print $3}\'').trim()
               echo "System Git Version ${env.GIT_VER}"
               // https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/
-              zip archive: true, dir: '', glob: '', zipFile: 'stingray-sw.zip', overwrite: true
+              zip archive: true, dir: '', glob: '', zipFile: 'stingray-sw.zip', overwrite: true, exclude: 'coverage-sources.zip'
                 }
             
             sh 'ls -l'
