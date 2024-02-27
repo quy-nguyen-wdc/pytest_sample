@@ -56,39 +56,39 @@ pipeline {
                     env.GIT_VER = sh(returnStdout: true, script: 'git --version | awk \'{print $3}\'').trim()
               echo "System Git Version ${env.GIT_VER}"
               // https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/
-              // zip archive: true, dir: '', glob: '', zipFile: 'stingray-sw.zip', overwrite: true
+              zip archive: true, dir: '', glob: '', zipFile: 'stingray-sw.zip', overwrite: true
               }
             
             sh 'ls -l'
-            // ftpPublisher alwaysPublishFromMaster: true, 
-            //     continueOnError: false, 
-            //     failOnError: false, 
-            //     masterNodeName: '',
-            //     paramPublish: [parameterName:""],
-            //     publishers: [
-            //     	[
-            //     	configName: 'GVP_Datashare',
-            //     	transfers: [
-            //     		[
-            //     		asciiMode: false, 
-            //     		cleanRemote: false, 
-            //     		excludes: '', 
-            //     		flatten: false,
-            //     		makeEmptyDirs: false, 
-            //     		noDefaultExcludes: false, 
-            //     		patternSeparator: '[, ]+', 
-            //     		remoteDirectory: "/TED/TARS", 
-            //     		remoteDirectorySDF: false, 
-            //     		removePrefix: '', 
-            //     		// sourceFiles: '**.py, **.zip'
-            //     		sourceFiles: 'stingray-sw.zip'
-            //     		]
-            //     	], 
-            //     	usePromotionTimestamp: false, 
-            //     	useWorkspaceInPromotion: false, 
-            //     	verbose: true
-            //     	]
-            //     ]
+            ftpPublisher alwaysPublishFromMaster: true, 
+                continueOnError: false, 
+                failOnError: false, 
+                masterNodeName: '',
+                paramPublish: [parameterName:""],
+                publishers: [
+                	[
+                	configName: 'GVP_Datashare',
+                	transfers: [
+                		[
+                		asciiMode: false, 
+                		cleanRemote: false, 
+                		excludes: '', 
+                		flatten: false,
+                		makeEmptyDirs: false, 
+                		noDefaultExcludes: false, 
+                		patternSeparator: '[, ]+', 
+                		remoteDirectory: "/TED/TARS", 
+                		remoteDirectorySDF: false, 
+                		removePrefix: '', 
+                		// sourceFiles: '**.py, **.zip'
+                		sourceFiles: 'stingray-sw.zip'
+                		]
+                	], 
+                	usePromotionTimestamp: false, 
+                	useWorkspaceInPromotion: false, 
+                	verbose: true
+                	]
+                ]
             }
         }
         stage('Unit Tests') {
@@ -187,13 +187,6 @@ pipeline {
         }
       success {
           echo 'This will run only if successful'
-          echo "INFO BUILD_URL: ${BUILD_URL}"
-          script {
-            def url = "${BUILD_URL}consoleText"
-            def url2 = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/log"
-            echo "INFO url: ${url}"            
-            sh "cp  ${url} console-output.log"
-          }
         }
       failure {
           echo 'This will run only if failed'
