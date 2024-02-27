@@ -192,7 +192,7 @@ pipeline {
             def url = "${BUILD_URL}consoleText"
             def url2 = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/log"
             echo "INFO url: ${url}"            
-            sh "cp  ${url2} console-output.log"
+            sh "cp  ${url} console-output.log"
           }
         }
       failure {
