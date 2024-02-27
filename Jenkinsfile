@@ -158,7 +158,7 @@ pipeline {
                 script {
                   def docker_image = "httpd:2.4-alpine"
                   cont = docker.image("${docker_image}").run('--rm -d -p 5000:5000')
-                  sleep(5)
+                  sleep(15)
                 }
                 timeout(time: 3, unit: 'MINUTES') {
                     retry(5) {
