@@ -155,11 +155,11 @@ pipeline {
           echo "INFO Invoke another job"
           build job: 'Freestyle Job Demo', parameters: [string(name: 'pyenv', value: '3.8.10')]
           echo "INFO CURRENT RESULT: ${currentBuild.currentResult}"
-                script {
-                  def docker_image = "httpd:2.4-alpine"
-                  cont = docker.image("${docker_image}").run('--rm -d -p 5000:5000')
-                  sleep(15)
-                }
+                // script {
+                //   def docker_image = "httpd:2.4-alpine"
+                //   cont = docker.image("${docker_image}").run('--rm -d -p 5000:5000')
+                //   sleep(15)
+                // }
                 timeout(time: 3, unit: 'MINUTES') {
                     retry(5) {
                   // sh './flakey-deploy.sh'
@@ -179,12 +179,12 @@ pipeline {
             //                     notFailBuild: true,
             //                     patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
             //                               [pattern: '.propsfile', type: 'EXCLUDE']])
-        script {
-          if (cont) {
-            echo "In Post - inside if condt"
-            cont.stop()
-          }
-        }
+        // script {
+        //   if (cont) {
+        //     echo "In Post - inside if condt"
+        //     cont.stop()
+        //   }
+        // }
 
         }
       success {
