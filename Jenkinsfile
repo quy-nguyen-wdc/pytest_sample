@@ -191,7 +191,7 @@ pipeline {
           script {
             def url = "${BUILD_URL}consoleText"
             echo "INFO url: ${url}"
-            sh "curl -o console.log ${url}"
+            sh "wget  ${url}"
           }
         }
       failure {
