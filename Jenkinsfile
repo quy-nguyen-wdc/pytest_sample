@@ -190,9 +190,9 @@ pipeline {
           echo "INFO BUILD_URL: ${BUILD_URL}"
           script {
             def url = "${BUILD_URL}consoleText"
-            def url2 = "$JENKINS_HOME/jobs/$JOB_NAME/builds/lastSuccessfulBuild/log"
-            echo "INFO url: ${url}"
-            sh "cat  ${url2}"
+            def url2 = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/log"
+            echo "INFO url: ${url}"            
+            sh "cp  ${url2} console-output.log"
           }
         }
       failure {
